@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#06110d">
+<title>Modscraft-11 | Minecraft Bedrock</title>
+<style>
+:root{--bg:#050b09;--panel:#0b1712;--panel2:#10231a;--green:#16f581;--green2:#8affb7;--text:#f0fff6;--muted:#9bb7a7;--line:#1d4832}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#103522 0,#050b09 48%);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif}
+header{position:sticky;top:0;z-index:3;background:#06110df0;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:1000;letter-spacing:1px;color:var(--green);font-size:19px}.brand span{color:white}.tag{font-size:11px;color:var(--muted)}
+main{max-width:1000px;margin:auto;padding:16px 14px 92px}
+.hero{border:1px solid #23764b;border-radius:20px;padding:24px 18px;background:linear-gradient(120deg,#123b27,#08130e 70%);overflow:hidden;position:relative}
+.hero:after{content:"⛏";position:absolute;right:10px;bottom:-28px;font-size:150px;opacity:.09;transform:rotate(-15deg)}
+.eyebrow{color:var(--green);font-weight:800;font-size:11px;letter-spacing:2px}.hero h1{font-size:clamp(26px,7vw,43px);line-height:1.05;margin:10px 0}.hero p{color:#c3e6d0;max-width:520px;line-height:1.5}.btn{border:0;border-radius:11px;background:var(--green);color:#042010;padding:11px 15px;font-weight:900;cursor:pointer}.btn.secondary{background:#12271b;color:var(--text);border:1px solid var(--line)}.sectionhead{display:flex;align-items:center;justify-content:space-between;margin:22px 2px 12px}.sectionhead h2{font-size:18px;margin:0}.muted{color:var(--muted);font-size:12px}
+.searchrow{display:flex;gap:8px;margin:16px 0 12px}input,select{background:#0a1711;color:var(--text);border:1px solid var(--line);border-radius:11px;padding:12px;min-width:0}input{flex:1;width:100%}
+.chips{display:flex;gap:7px;overflow:auto;padding-bottom:4px}.chip{white-space:nowrap;border:1px solid var(--line);border-radius:999px;padding:9px 13px;background:#0b1712;color:#c7dfd0;cursor:pointer}.chip.active{background:var(--green);color:#042010;border-color:var(--green);font-weight:800}
+.grid{display:grid;grid-template-columns:repeat( auto-fit,minmax(220px,1fr));gap:12px}.card{border:1px solid var(--line);background:linear-gradient(160deg,#102319,#09120e);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}.art{height:112px;display:grid;place-items:center;font-size:48px;background:linear-gradient(135deg,#1d5636,#0c2015);position:relative}.art:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#09120e,transparent 65%)}.art span{z-index:1;filter:drop-shadow(0 4px 12px #000)}.cardbody{padding:13px;display:flex;flex-direction:column;gap:8px;flex:1}.card h3{font-size:16px;margin:0}.meta{font-size:12px;color:var(--muted);line-height:1.4}.pill{display:inline-block;background:#133b25;color:#8dffb7;border:1px solid #246a42;padding:3px 7px;border-radius:6px;font-size:10px;font-weight:800;margin-right:4px}.actions{display:flex;gap:7px;margin-top:auto;padding-top:5px}.actions button{flex:1}.heart{max-width:43px;font-size:18px}.bottomnav{position:fixed;bottom:0;left:0;right:0;z-index:4;background:#06110df5;border-top:1px solid var(--line);display:flex;justify-content:center;gap:4px;padding:8px max(8px,calc((100vw - 700px)/2));backdrop-filter:blur(12px)}.navbtn{flex:1;max-width:150px;border:0;background:transparent;color:var(--muted);padding:8px 4px;border-radius:10px;font-size:12px;cursor:pointer}.navbtn.active{color:var(--green);background:#10271a}.navbtn b{display:block;font-size:19px;margin-bottom:2px}
+.notice{border:1px solid #765b20;background:#261f0d;color:#ffe9a5;padding:12px;border-radius:12px;font-size:12px;line-height:1.45;margin-top:18px}.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:22px 8px}.hidden{display:none!important}
+@media(min-width:700px){main{padding-top:24px}.hero{padding:32px}.art{height:135px}}
+</style>
+</head>
+<body>
+<header><div><div class="brand">MODSCRAFT<span>-11</span></div><div class="tag">SHADERS · MODS · TEXTURAS · ADDONS</div></div><button class="btn secondary" id="aboutBtn" aria-label="Acerca de">ⓘ</button></header>
+<main>
+<section class="hero" id="hero"><div class="eyebrow">MINECRAFT BEDROCK</div><h1>Tu mundo.<br><span style="color:var(--green)">Sin límites.</span></h1><p>Descubre shaders, addons y texturas para darle otra vida a tus mundos. Busca por categoría y guarda tus favoritos.</p><button class="btn" id="exploreBtn">Explorar catálogo ↗</button></section>
+<div class="searchrow"><input id="search" type="search" placeholder="Buscar shaders, mods, texturas..." aria-label="Buscar contenido"><select id="version" aria-label="Filtrar por versión"><option value="all">Todas las versiones</option><option value="1.21">1.21+</option><option value="1.20">1.20+</option><option value="1.19">1.19+</option></select></div>
+<div class="chips" id="chips"><button class="chip active" data-category="Todos">Todos</button><button class="chip" data-category="Shaders">Shaders</button><button class="chip" data-category="Mods">Mods</button><button class="chip" data-category="Texturas">Texturas</button><button class="chip" data-category="Addons">Addons</button></div>
+<div class="sectionhead"><h2 id="listTitle">🔥 Selección destacada</h2><span class="muted" id="count"></span></div>
+<div class="grid" id="catalog"></div>
+<div class="notice"><strong>Descargas seguras:</strong> esta versión es un prototipo funcional. Las fichas y tamaños son ejemplos; todavía no incluyen archivos reales. Antes de publicar descargas, añade enlaces verificados de sus creadores y confirma la compatibilidad con tu versión de Bedrock. Nunca instales APK desconocidos para importar un addon.</div>
+<footer>MODSCRAFT-11 · Proyecto independiente para Minecraft Bedrock.<br>No está afiliado con Mojang ni Microsoft.</footer>
+</main>
+<nav class="bottomnav"><button class="navbtn active" data-page="Inicio"><b>⌂</b>Inicio</button><button class="navbtn" data-page="Catálogo"><b>▦</b>Catálogo</button><button class="navbtn" data-page="Descargas"><b>⇩</b>Descargas</button><button class="navbtn" data-page="Favoritos"><b>♡</b>Favoritos</button></nav>
+<script>
+const items=[
+
+  {
+    id: 1,
+    name: "Auto Totem",
+    cat: "Addons",
+    version: "26.0-26.30",
+    size: "44.77 KB",
+    icon: "🛡️",
+    url: "https://mcpedl.com/auto-totem-by-neq/",
+    desc: "Addon para automatizar el uso del tótem. Consulta la compatibilidad en la publicación."
+  },
+  {
+    id: 2,
+    name: "Neq's Clean UI",
+    cat: "Texturas",
+    version: "26.0-26.30",
+    size: "19.9 MB",
+    icon: "🎨",
+    url: "https://mcpedl.com/neqs-clean-ui/",
+    desc: "Pack de recursos para personalizar la interfaz de Minecraft Bedrock."
+  },
+  {
+    id: 3,
+    name: "MoreCraftingRecipes",
+    cat: "Addons",
+    version: "¿26.30?",
+    size: "96.4 KB",
+    icon: "🧰",
+    url: "https://mcpedl.com/morecraftingrecipes-by-gxshake/",
+    desc: "Añade recetas de fabricación. Consulta los detalles del creador."
+  },
+  {
+    id: 4,
+    name: "Simple Loot Booster",
+    cat: "Addons",
+    version: "1.21.26.11",
+    size: "195.07 KB",
+    icon: "💎",
+    url: "https://mcpedl.com/simple-loot-booster/",
+    desc: "Modifica el botín de criaturas. Revisa los requisitos antes de instalar."
+  },
+  {
+    id: 5,
+    name: "Better on Bedrock",
+    cat: "Addons",
+    version: "26.10",
+    size: "Consultar publicación",
+    icon: "🌍",
+    url: "https://mcpedl.com/better-on-bedrock/",
+    desc: "Una expansión de supervivencia con nuevas características."
+  },
+  {
+    id: 6,
+    name: "More Tools Addon",
+    cat: "Addons",
+    version: "26.0-26.30",
+    size: "Consultar publicación",
+    icon: "⛏️",
+    url: "https://mcpedl.com/more-tools-addon/",
+    desc: "Añade herramientas y objetos para ampliar la aventura."
+  },
+  {
+    id: 7,
+    name: "Raiyon's Dynamic Lightning",
+    cat: "Addons",
+    version: "26.0-26.30",
+    size: "Consultar publicación",
+    icon: "🔦",
+    url: "https://mcpedl.com/raiyons-dynamic-light-addon/",
+    desc: "Añade iluminación dinámica para explorar lugares oscuros."
+  },
+  {
+    id: 8,
+    name: "Raiyon's Java Combat",
+    cat: "Addons",
+    version: "1.21.120-26.0",
+    size: "Consultar publicación",
+    icon: "⚔️",
+    url: "https://mcpedl.com/raiyons-java-combat-addon/",
+    desc: "Un sistema de combate inspirado en Minecraft Java."
+  },
+  {
+    id: 9,
+    name: "Effortless Building",
+    cat: "Addons",
+    version: "1.21.111-26.30",
+    size: "Consultar publicación",
+    icon: "🧱",
+    url: "https://mcpedl.com/effortless-building/",
+    desc: "Herramientas para construir estructuras con mayor facilidad."
+  },
+  {
+    id: 10,
+    name: "Sophisticangel Backpack",
+    cat: "Addons",
+    version: "1.21.20-1.21.50",
+    size: "Consultar publicación",
+    icon: "🎒",
+    url: "https://mcpedl.com/sophisticangel-backpack/",
+    desc: "Añade mochilas para ampliar las opciones de almacenamiento."
+  },
+  {
+    id: 11,
+    name: "Bare Bones Texture Pack",
+    cat: "Texturas",
+    version: "1.21.130",
+    size: "Consultar publicación",
+    icon: "🧱",
+    url: "https://mcpedl.com/bare-bones-be/",
+    desc: "Un estilo visual sencillo inspirado en los tráileres de Minecraft."
+  },
+  {
+    id: 12,
+    name: "Newb Shader",
+    cat: "Shaders",
+    version: "26.40+",
+    size: "Consultar publicación",
+    icon: "🌅",
+    url: "https://mcpedl.com/newb-shader/",
+    desc: "Un shader de estilo suave que busca mantener un aspecto ligero."
+  }
+
+];
+
+
+
+let category = "Todos", page = "Inicio";
+let favorites = new Set(
+  JSON.parse(localStorage.getItem("modscraft-favorites") || "[]")
+);
+let downloads = new Set();
+
+const $=s=>document.querySelector(s);
+function render(){
+ let q=$("#search").value.toLowerCase().trim(),v=$("#version").value;
+if(v==="all")v="all";
+ let data=items.filter(x=>(category==="Todos"||x.cat===category)&&(v==="all"||x.version===v)&&(x.name.toLowerCase().includes(q)||x.desc.toLowerCase().includes(q)));
+ if(page==="Favoritos")data=data.filter(x=>favorites.has(x.id));
+ if(page==="Descargas")data=data.filter(x=>downloads.has(x.id));
+ $("#listTitle").textContent=page==="Favoritos"?"♡ Tus favoritos":page==="Descargas"?"⇩ Elementos preparados":"🔥 "+(category==="Todos"?"Selección destacada":category);
+ $("#count").textContent=data.length+" elementos";
+ $("#catalog").innerHTML=data.map(x=>`<article class="card"><div class="art"><span>${x.icon}</span></div><div class="cardbody"><div><span class="pill">${x.cat}</span><span class="pill">Bedrock · ${x.version}</span></div><h3>${x.name}</h3><div class="meta">${x.size} · Ficha de demostración</div><div class="meta">${x.desc}</div><div class="actions"><button class="btn" onclick="downloadItem(${x.id})">↓ Descargar</button><button class="btn secondary heart" aria-label="Favorito" onclick="toggleFav(${x.id})">${favorites.has(x.id)?"♥":"♡"}</button></div></div></article>`).join("");
+ if(!data.length)$("#catalog").innerHTML='<div class="empty">No encontramos elementos con esos filtros. Prueba otra búsqueda o categoría. ✨</div>';
+}
+
+function downloadItem(id) {
+  const item = items.find(x => x.id === id);
+
+  if (!item || !item.url) {
+    alert("No hay una publicación vinculada.");
+    return;
+  }
+
+  downloads.add(id);
+  render();
+  window.open(item.url, "_blank");
+}
+
+
+
+function toggleFav(id) {
+  if (favorites.has(id)) {
+    favorites.delete(id);
+  } else {
+    favorites.add(id);
+  }
+
+  localStorage.setItem(
+    "modscraft-favorites",
+    JSON.stringify([...favorites])
+  );
+
+  render();
+}
+
+$("#search").addEventListener("input",render);$("#version").addEventListener("change",render);
+$("#chips").addEventListener("click",e=>{let b=e.target.closest("button[data-category]");if(!b)return;category=b.dataset.category;document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("active",c===b));page="Catálogo";document.querySelectorAll(".navbtn").forEach(n=>n.classList.toggle("active",n.dataset.page===page));render();});
+document.querySelectorAll(".navbtn").forEach(b=>b.addEventListener("click",()=>{page=b.dataset.page;if(page==="Inicio")category="Todos";document.querySelectorAll(".navbtn").forEach(n=>n.classList.toggle("active",n===b));document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("active",c.dataset.category===category));render();window.scrollTo({top:0,behavior:"smooth"});}));
+$("#exploreBtn").addEventListener("click",()=>{page="Catálogo";document.querySelectorAll(".navbtn").forEach(n=>n.classList.toggle("active",n.dataset.page===page));$("#search").focus();render();document.querySelector("#chips").scrollIntoView({behavior:"smooth",block:"center"});});
+$("#aboutBtn").addEventListener("click",()=>alert("Modscraft-11 es un prototipo de catálogo para Minecraft Bedrock. Los elementos mostrados son ejemplos visuales, no recomendaciones de descarga verificadas."));
+render();
+</script>
+</body>
+                                                                 </html>
